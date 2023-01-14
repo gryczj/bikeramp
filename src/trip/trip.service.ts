@@ -21,7 +21,7 @@ export class TripService {
     return await this.tripRepository.createQueryBuilder('trip').getMany();
   }
 
-  async getLastWeekTrips(
+  async getTripsByRangeDate(
     currentDate: string,
     pastDate: string,
   ): Promise<Trip[]> {
@@ -29,20 +29,34 @@ export class TripService {
       where: {
         date: LessThan(currentDate) && MoreThan(pastDate),
       },
+      order: {
+        date: 'ASC',
+      },
     });
   }
 
   async getLastMonthTrips(): Promise<Trip[]> {
     return await this.tripRepository
       .createQueryBuilder('trip')
+      // .where('trip.date = :currDate', { currDate: '2023-01-02'})
+      // .select('trip.date, EXTRACT(MONTH FROM trip.date) AS month')
+      // .groupBy('trip.date')
+      // .groupBy('trip.date')
+      // .select('trip.id')
       .distinctOn(['trip.date'])
-      .andWhere('trip.date BETWEEN :currentDate-7 AND :currentDate', {
-        currentDate,
-      })
-      .andWhere('trip.date BETWEEN :currentDate-7 AND :currentDate', {
-        currentDate,
-      });
-    //   .getMany();
+      .select(['trip.date', 'AVG(trip.price)'])
+      // .addSelect('AVG(trip.price)', 'avg_price')
+      // .addSelect('AVG(trip.distance)', 'avg_ride')
+      // .addSelect('SUM(trip.distance)', 'total_distance')
+      // .addSelect('COUNT(trip.id)', 'rides_number')
+      .getMany();
+    //   .andWhere('trip.date BETWEEN :currentDate-7 AND :currentDate', {
+    //     currentDate,
+    //   })
+    //   .andWhere('trip.date BETWEEN :currentDate-7 AND :currentDate', {
+    //     currentDate,
+    //   });
+    // //   .getMany();
   }
 
   async saveTrip(trip: CreateTripDto): Promise<void> {

@@ -22,7 +22,7 @@ export class TripController {
     }
   }
 
-  @Get(':id')
+  @Get('details/:id')
   async getTrip(@Param('id') tripId: number): Promise<Trip> {
     try {
       return await this.tripService.getTripById(tripId);

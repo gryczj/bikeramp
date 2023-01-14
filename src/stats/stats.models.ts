@@ -1,9 +1,9 @@
-export type WeeklyStats = {
+export type DistanceAndPriceStats = {
   total_distance: string;
   total_price: string;
 };
 
-export type MonthlyStats = {
+export type DailyStats = {
   day: string;
   total_distance: string;
   avg_ride: string;
