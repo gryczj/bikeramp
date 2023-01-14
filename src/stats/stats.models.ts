@@ -1,4 +1,4 @@
-export type DistanceAndPriceStats = {
+export type WeeklyStats = {
   total_distance: string;
   total_price: string;
 };

@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
 import { StatsService } from './stats.service';
-import { DailyStats, DistanceAndPriceStats } from './stats.models';
+import { DailyStats, WeeklyStats } from './stats.models';
 
 @Controller('stats')
 export class StatsController {
   constructor(private statsService: StatsService) {}
 
   @Get('weekly')
-  async getDistanceAndPriceStats(): Promise<DistanceAndPriceStats> {
+  async getDistanceAndPriceStats(): Promise<WeeklyStats> {
     return await this.statsService.getWeeklyStats();
   }
 

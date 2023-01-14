@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "0f65b143-73d7-4d7f-b2fb-df3d725c9cdd",
+		"name": "Bikeramp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21440803"
+	},
+	"item": [
+		{
+			"name": "Create trip",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"start_address\": \"Plac Europejski 2, Warszawa, Polska\",\n  \"destination_address\": \"Bakalarska 11, Warszawa, Polska\",\n  \"price\": 50,\n  \"date\": \"20-05-2020\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trip",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trip"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trip",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"start_address\": \"Plac Europejski 2, Warszawa, Polska\",\n  \"destination_address\": \"Bakalarska 11, Warszawa, Polska\",\n  \"price\": 50,\n  \"date\": \"20-05-2020\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trip/?id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trip",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get trips",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"start_address\": \"Plac Europejski 2, Warszawa, Polska\",\n  \"destination_address\": \"Bakalarska 11, Warszawa, Polska\",\n  \"price\": 50,\n  \"date\": \"20-05-2020\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/trip/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trip",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Weekly Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/stats/weekly",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stats",
+						"weekly"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Monthly Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/stats/monthly",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stats",
+						"monthly"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
