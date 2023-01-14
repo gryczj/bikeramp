@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TripModule } from './trip/trip.module';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -16,7 +18,9 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
-    })
+    }),
+    TripModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
