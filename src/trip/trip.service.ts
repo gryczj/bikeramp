@@ -19,12 +19,12 @@ export class TripService {
       start_address,
       destination_address,
     );
-    const tripEntity = this.tripRepository.create({
-      distance,
-      price,
-      date,
-    });
     try {
+      const tripEntity = this.tripRepository.create({
+        distance,
+        price,
+        date,
+      });
       await this.tripRepository.save(tripEntity);
     } catch (e) {
       throw Error(e);
@@ -45,7 +45,15 @@ export class TripService {
     });
   }
 
-  async calculateDistance(
+  async getTripById(tripId: number): Promise<Trip> {
+    return await this.tripRepository.findOneBy({ id: tripId });
+  }
+
+  async getTrips(): Promise<Trip[]> {
+    return await this.tripRepository.createQueryBuilder('trip').getMany();
+  }
+
+  private async calculateDistance(
     startAddress: string,
     destination_address: string,
   ): Promise<number> {
@@ -73,7 +81,7 @@ export class TripService {
     return Math.round(c * r);
   }
 
-  async getCoordinates(address: string): Promise<Coordinates> {
+  private async getCoordinates(address: string): Promise<Coordinates> {
     try {
       const decodedAddress = await geoCoder.geocode(address);
       const { latitude, longitude } = decodedAddress[0];
@@ -84,13 +92,5 @@ export class TripService {
     } catch (e) {
       throw new Error(e);
     }
-  }
-
-  async getTripById(productId: number): Promise<Trip> {
-    return await this.tripRepository.findOneBy({ id: productId });
-  }
-
-  async getTrips(): Promise<Trip[]> {
-    return await this.tripRepository.createQueryBuilder('trip').getMany();
   }
 }

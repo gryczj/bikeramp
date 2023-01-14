@@ -7,7 +7,7 @@ export class StatsController {
   constructor(private statsService: StatsService) {}
 
   @Get('weekly')
-  async getDistanceAndPriceStats(): Promise<WeeklyStats> {
+  async getWeeklyStats(): Promise<WeeklyStats> {
     return await this.statsService.getWeeklyStats();
   }
 
